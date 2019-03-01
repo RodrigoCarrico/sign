@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sign</groupId>
+    <artifactId>sign</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <!-- NAKED OBJECTS -->
+        <repository>
+            <id>no-snapshotsd</id>
+            <url>http://nakedobjects.sourceforge.net/m2-repo/snapshot/</url>
+        </repository>
+
+        <!-- MAVEN REPOSITORY -->
+        <repository>
+            <id>mvn-repository</id>
+            <url>http://mvnrepository.com/</url>
+        </repository>
+
+        <!-- MAVEN SEARCH REPOSITORY -->
+        <repository>
+            <id>mavensearch</id>
+            <url>http://www.mvnsearch.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/fontbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>fontbox</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/preflight -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>preflight</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/xmpbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>xmpbox</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox-tools -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-tools</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox-app -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-app</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jgoodies/jgoodies-forms -->
+        <dependency>
+            <groupId>com.jgoodies</groupId>
+            <artifactId>jgoodies-forms</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <!-- DEFINE AS CONFIGURAÇÕES DO MAVEN ASSEMBLER  -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <!-- DEFINE QUAL É A CLASSE MAIN DA APLICAÇÃO  -->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>Main</mainClass>
+                        </manifest>
+                    </archive>
+
+                    <!-- ADICIONO AO NOME DO JAR FINAL UM COMPLEMENTO DIZENDO
+                         QUE ELE CONTÉM AS DEPENDÊNCIAS  -->
+
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+
+                        <!-- DETERMINO QUE O JAR GERADO INCLUIRÁ AS DEPENDÊNCIAS E ELAS
+                        SERÃO EMPACOTADAS JUNTO COM O PROJETO EM UM ÚNICO JAR  -->
+
+                        <id>make-my-jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
